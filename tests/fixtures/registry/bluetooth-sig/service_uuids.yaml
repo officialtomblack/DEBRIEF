@@ -1,0 +1,8 @@
+# TEST FIXTURE: a few entries copied from data/bluetooth-sig/service_uuids.yaml (same structure: uuid is decimal)
+uuids:
+  - uuid: 6157
+    name: Heart Rate
+  - uuid: 6162
+    name: Human Interface Device
+  - uuid: 6159
+    name: Battery

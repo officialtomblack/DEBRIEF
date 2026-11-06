@@ -1,0 +1,52 @@
+{
+  "note": "Enrichment data sources for the SWIVEL log-enhancer. Flip `enabled` to turn a source on or off. offline_bulk sources are downloaded once by `fetch` and matched locally \u2014 captures never leave the machine. Disabling an offline source stops `fetch` from refreshing it; any copy already under data/ keeps being used until you delete it. online_lookup sources send one request per item when you run their command: kept OFF by default, and only ever for fixed infrastructure (Wi-Fi AP BSSIDs) \u2014 never client/BLE/randomized MACs, never your GPS (spec R1/R2).",
+  "sources": [
+    {
+      "id": "ieee_oui",
+      "kind": "offline_bulk",
+      "enabled": true,
+      "what": "IEEE OUI / MA-M / MA-S vendor registries (oui_vendor)"
+    },
+    {
+      "id": "wireshark_manuf",
+      "kind": "offline_bulk",
+      "enabled": true,
+      "what": "Wireshark manuf vendor fallback (oui_vendor)"
+    },
+    {
+      "id": "bluetooth_sig",
+      "kind": "offline_bulk",
+      "enabled": true,
+      "what": "Bluetooth SIG company IDs / service UUIDs / appearance / class (advertised_company, device_class)"
+    },
+    {
+      "id": "osm_alpr",
+      "kind": "offline_bulk",
+      "enabled": true,
+      "what": "OpenStreetMap worldwide ALPR cameras (near_alpr proximity)"
+    },
+    {
+      "id": "ringmast4r",
+      "kind": "offline_bulk",
+      "enabled": true,
+      "what": "ringmast4r OUI-Master-Database device_type (oui_device_type: coarse Router/Phone/Camera/IoT/... per OUI; withheld on randomized MACs like oui_vendor)"
+    },
+    {
+      "id": "wigle_ap",
+      "kind": "online_lookup",
+      "enabled": true,
+      "scope": "wifi_ap_bssid",
+      "key_env": "WIGLE_API_TOKEN",
+      "endpoint": "https://api.wigle.net/api/v2/network/search",
+      "what": "WiGLE AP geolocation. Run `wigle <db>` to look up Wi-Fi AP BSSIDs only (never client/BLE/randomized, never GPS). Needs your own WiGLE 'Encoded for use' token in the WIGLE_API_TOKEN environment variable; the tool never stores or prints it."
+    },
+    {
+      "id": "beacondb_ap",
+      "kind": "online_lookup",
+      "enabled": true,
+      "scope": "wifi_ap_bssid",
+      "endpoint": "https://api.beacondb.net/v1/geolocate",
+      "what": "beaconDB AP geolocation (free, NO key) \u2014 a keyless alternative to WiGLE. Run `beacondb <db>`: Wi-Fi AP BSSIDs only (never client/BLE/randomized, never GPS); IP-fallback responses are dropped so your own location is never stored as an AP fix. Note: fccid.io / FCC OET (FCC ID -> device internals/photos) is a MANUAL browser lookup only (it 403s to scripts), so there is no automated path/column for it."
+    }
+  ]
+}

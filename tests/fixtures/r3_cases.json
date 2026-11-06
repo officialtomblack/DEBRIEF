@@ -1,0 +1,74 @@
+{
+  "_about": "SYNTHETIC R3 fixture. Every address is made up (real OUI prefix + invented NIC bytes 00:00:xx). No real capture data. Input files (.ndjson / .wiglecsv) are generated from these rows at test time, so no capture-format file is ever committed.",
+  "_sources": "phone = SWIVEL ndjson row (fields as the app writes them). kismet_wiglecsv = one WigleWifi-1.4 row as Kismet exports it (no address type column).",
+  "cases": [
+    {"id": "W1", "rule": "Wi-Fi LAA bit set -> no OUI vendor, even when the table has the prefix",
+     "address": "DA:A1:19:00:00:01", "radios": ["wifi"], "expect": {"oui_vendor": null},
+     "rows": [{"source": "phone", "kind": "WIFI", "mac": "DA:A1:19:00:00:01", "address_type": "local", "vendor": "", "ssid_or_name": "fixture-ap-1"}]},
+
+    {"id": "W2", "rule": "Wi-Fi LAA bit set but row labelled public, upstream vendor filled -> bit wins, no vendor",
+     "address": "1A:2B:3C:00:00:02", "radios": ["wifi"], "expect": {"oui_vendor": null},
+     "rows": [{"source": "phone", "kind": "WIFI", "mac": "1A:2B:3C:00:00:02", "address_type": "public", "vendor": "TEST-ONLY LAA PREFIX B", "ssid_or_name": "fixture-ap-2"}]},
+
+    {"id": "W3", "rule": "Wi-Fi LAA bit set, Kismet row with no address type -> no vendor",
+     "address": "DA:A1:19:00:00:03", "radios": ["wifi"], "expect": {"oui_vendor": null},
+     "rows": [{"source": "kismet_wiglecsv", "type": "WIFI", "mac": "DA:A1:19:00:00:03", "ssid": "fixture-ap-3"}]},
+
+    {"id": "B1", "rule": "BLE random_static with a registered prefix -> no vendor",
+     "address": "F8:04:2E:00:00:04", "radios": ["ble"], "expect": {"oui_vendor": null},
+     "rows": [{"source": "phone", "kind": "BLE", "mac": "F8:04:2E:00:00:04", "address_type": "random_static", "vendor": "", "manufacturer": "75004204"}]},
+
+    {"id": "B2", "rule": "BLE random_rpa, upstream vendor wrongly filled -> no vendor",
+     "address": "5C:F9:38:00:00:05", "radios": ["ble"], "expect": {"oui_vendor": null},
+     "rows": [{"source": "phone", "kind": "BLE", "mac": "5C:F9:38:00:00:05", "address_type": "random_rpa", "vendor": "Apple, Inc.", "manufacturer": "4C001005"}]},
+
+    {"id": "B3", "rule": "BLE random_nrpa (LAA bit clear) -> no vendor",
+     "address": "28:CF:E9:00:00:06", "radios": ["ble"], "expect": {"oui_vendor": null},
+     "rows": [{"source": "phone", "kind": "BLE", "mac": "28:CF:E9:00:00:06", "address_type": "random_nrpa", "vendor": "", "manufacturer": "4C000215"}]},
+
+    {"id": "M1", "rule": "BLE, Kismet row, address type missing -> unknown -> no vendor (the bug reproduced in the read pass)",
+     "address": "A4:83:E7:00:00:07", "radios": ["ble"], "expect": {"oui_vendor": null},
+     "rows": [{"source": "kismet_wiglecsv", "type": "BLE", "mac": "A4:83:E7:00:00:07", "ssid": ""}]},
+
+    {"id": "M2", "rule": "BLE, phone row with no address_type field at all -> unknown -> no vendor",
+     "address": "98:01:A7:00:00:08", "radios": ["ble"], "expect": {"oui_vendor": null},
+     "rows": [{"source": "phone", "kind": "BLE", "mac": "98:01:A7:00:00:08", "vendor": "", "manufacturer": "4C001005", "_omit": ["address_type"]}]},
+
+    {"id": "M3", "rule": "BLE, empty address_type, upstream vendor filled -> unknown -> no vendor",
+     "address": "AC:BC:32:00:00:09", "radios": ["ble"], "expect": {"oui_vendor": null},
+     "rows": [{"source": "phone", "kind": "BLE", "mac": "AC:BC:32:00:00:09", "address_type": "", "vendor": "Apple, Inc.", "manufacturer": "4C001005"}]},
+
+    {"id": "M4", "rule": "BLE, address_type 'unknown' -> no vendor",
+     "address": "AC:BC:32:00:00:0A", "radios": ["ble"], "expect": {"oui_vendor": null},
+     "rows": [{"source": "phone", "kind": "BLE", "mac": "AC:BC:32:00:00:0A", "address_type": "unknown", "vendor": "", "manufacturer": "4C001005"}]},
+
+    {"id": "M5", "rule": "BLE 'public' from today's app is a top-bit GUESS, not captured -> strict: no vendor",
+     "address": "A4:83:E7:00:00:0B", "radios": ["ble"], "expect": {"oui_vendor": null},
+     "rows": [{"source": "phone", "kind": "BLE", "mac": "A4:83:E7:00:00:0B", "address_type": "public", "vendor": "Apple, Inc.", "manufacturer": "4C001005"}]},
+
+    {"id": "C1", "rule": "Classic address also seen as BLE -> BLE rule -> no vendor on either radio; the two radios stay separate rows",
+     "address": "D0:03:4B:00:00:0C", "radios": ["bt-classic", "ble"], "expect": {"oui_vendor": null},
+     "rows": [{"source": "phone", "kind": "CLASSIC", "mac": "D0:03:4B:00:00:0C", "address_type": "public", "vendor": "", "ssid_or_name": "fixture-dual"},
+              {"source": "phone", "kind": "BLE", "mac": "D0:03:4B:00:00:0C", "address_type": "random_static", "vendor": "", "manufacturer": "4C001005"}]},
+
+    {"id": "C2", "rule": "Classic-only address with the LAA bit set -> no vendor (registry has the prefix)",
+     "address": "1A:2B:3C:00:00:11", "radios": ["bt-classic"], "expect": {"oui_vendor": null},
+     "rows": [{"source": "phone", "kind": "CLASSIC", "mac": "1A:2B:3C:00:00:11", "address_type": "local", "vendor": "", "ssid_or_name": "fixture-laa-classic"}]},
+
+    {"id": "P1", "rule": "Wi-Fi public BSSID -> OUI vendor resolves",
+     "address": "00:00:0C:00:00:0D", "radios": ["wifi"], "expect": {"oui_vendor": "Cisco Systems, Inc", "oui_vendor_confidence": "high"},
+     "rows": [{"source": "phone", "kind": "WIFI", "mac": "00:00:0C:00:00:0D", "address_type": "public", "vendor": "", "ssid_or_name": "fixture-ap-p1"}]},
+
+    {"id": "P2", "rule": "Classic-only public BD_ADDR -> OUI vendor resolves at MEDIUM confidence",
+     "address": "00:02:5B:00:00:0E", "radios": ["bt-classic"], "expect": {"oui_vendor": "Cambridge Silicon Radio", "oui_vendor_confidence": "med"},
+     "rows": [{"source": "phone", "kind": "CLASSIC", "mac": "00:02:5B:00:00:0E", "address_type": "public", "vendor": "", "ssid_or_name": "fixture-headset"}]},
+
+    {"id": "P3", "rule": "Wi-Fi public BSSID from Kismet, same prefix as M1 -> resolves (Wi-Fi uses the bit only)",
+     "address": "A4:83:E7:00:00:0F", "radios": ["wifi"], "expect": {"oui_vendor": "Apple, Inc.", "oui_vendor_confidence": "high"},
+     "rows": [{"source": "kismet_wiglecsv", "type": "WIFI", "mac": "A4:83:E7:00:00:0F", "ssid": "fixture-ap-p3"}]},
+
+    {"id": "P4", "rule": "Wi-Fi public BSSID -> OUI vendor resolves",
+     "address": "3C:5A:B4:00:00:10", "radios": ["wifi"], "expect": {"oui_vendor": "Google, Inc.", "oui_vendor_confidence": "high"},
+     "rows": [{"source": "phone", "kind": "WIFI", "mac": "3C:5A:B4:00:00:10", "address_type": "public", "vendor": "", "ssid_or_name": "fixture-ap-p4"}]}
+  ]
+}

@@ -1,0 +1,27 @@
+<svg viewBox="0 0 680 350" width="680" height="350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="One morning, three stops: a Find My tag shows up at every stop and a car hotspot at two, so DEBRIEF flags both as followed; everything that stayed in one place is not flagged.">
+<rect x="1" y="1" width="678" height="348" rx="22" fill="#060A08" stroke="#17261D"/>
+<text x="28" y="38" font-family="monospace" font-size="12" fill="#72847C" letter-spacing="2">ONE MORNING · THREE STOPS · 79 DEVICES HEARD</text>
+<g font-family="monospace" font-size="13" fill="#9FB5AA" text-anchor="middle" letter-spacing="1">
+<text x="120" y="78">08:00 · START</text><text x="340" y="78">09:10 · CAFE</text><text x="560" y="78">10:25 · OFFICE</text>
+</g>
+<g fill="#0B1611" stroke="#1F3328" stroke-dasharray="3 4"><circle cx="120" cy="150" r="58"/><circle cx="340" cy="150" r="58"/><circle cx="560" cy="150" r="58"/></g>
+<g fill="#4A5A52">
+<circle cx="92" cy="122" r="3"/><circle cx="148" cy="168" r="3"/><circle cx="104" cy="186" r="3"/><circle cx="76" cy="152" r="3"/><circle cx="160" cy="130" r="3"/><circle cx="126" cy="110" r="3"/><circle cx="84" cy="176" r="3"/><circle cx="136" cy="190" r="3"/>
+<circle cx="312" cy="118" r="3"/><circle cx="368" cy="176" r="3"/><circle cx="324" cy="188" r="3"/><circle cx="300" cy="150" r="3"/><circle cx="380" cy="140" r="3"/><circle cx="346" cy="108" r="3"/><circle cx="318" cy="162" r="3"/><circle cx="360" cy="196" r="3"/>
+<circle cx="532" cy="124" r="3"/><circle cx="590" cy="172" r="3"/><circle cx="548" cy="190" r="3"/><circle cx="520" cy="156" r="3"/><circle cx="600" cy="134" r="3"/><circle cx="566" cy="106" r="3"/><circle cx="576" cy="150" r="3"/><circle cx="582" cy="194" r="3"/>
+</g>
+<path d="M138 132 Q247 52 356 128 Q467 52 578 134" fill="none" stroke="#4DA6FF" stroke-width="2" stroke-dasharray="6 5"/>
+<path d="M100 172 Q330 296 540 170" fill="none" stroke="#F5B84D" stroke-width="2" stroke-dasharray="6 5"/>
+<g fill="#4DA6FF"><circle cx="138" cy="132" r="6"/><circle cx="356" cy="128" r="6"/><circle cx="578" cy="134" r="6"/></g>
+<g fill="none" stroke="#4DA6FF" stroke-opacity="0.45"><circle cx="138" cy="132" r="13"/><circle cx="356" cy="128" r="13"/><circle cx="578" cy="134" r="13"/></g>
+<g fill="#F5B84D"><circle cx="100" cy="172" r="6"/><circle cx="540" cy="170" r="6"/></g>
+<line x1="28" y1="252" x2="652" y2="252" stroke="#17261D"/>
+<g font-family="monospace" font-size="13">
+<line x1="32" y1="279" x2="58" y2="279" stroke="#4DA6FF" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="70" y="283" fill="#CFE3D8">Find My tag · all 3 stops · 1.8 km · 3.5 h</text><text x="652" y="283" fill="#4DA6FF" text-anchor="end">FOLLOWED · TRACKER</text>
+<line x1="32" y1="305" x2="58" y2="305" stroke="#F5B84D" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="70" y="309" fill="#CFE3D8">Car hotspot · 2 of 3 stops</text><text x="652" y="309" fill="#F5B84D" text-anchor="end">FOLLOWED</text>
+<circle cx="45" cy="331" r="3" fill="#4A5A52"/>
+<text x="70" y="335" fill="#9FB5AA">Everything that stayed in one place</text><text x="652" y="335" fill="#72847C" text-anchor="end">NOT FLAGGED</text>
+</g>
+</svg>

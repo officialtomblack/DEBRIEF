@@ -1,0 +1,8 @@
+# TEST FIXTURE: a few categories copied from data/bluetooth-sig/appearance_values.yaml (category-level; value = category<<6 | sub)
+appearance_values:
+  - category: 0
+    name: Unknown
+  - category: 1
+    name: Phone
+  - category: 7
+    name: Watch

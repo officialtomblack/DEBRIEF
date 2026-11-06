@@ -1,0 +1,16 @@
+{
+  "title": "SWIVEL log-enhancer",
+  "description": "Private, offline enrichment of SWIVEL phone + Kismet captures. Local browse only.",
+  "extra_css_urls": ["/assets/swivel.css"],
+  "databases": {
+    "swivel": {
+      "tables": {
+        "sightings": {
+          "plugins": {
+            "datasette-cluster-map": {"latitude_column": "lat", "longitude_column": "lon"}
+          }
+        }
+      }
+    }
+  }
+}

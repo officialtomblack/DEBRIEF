@@ -1,0 +1,4 @@
+# TEST FIXTURE: an entry copied from data/bluetooth-sig/member_uuids.yaml (same structure)
+uuids:
+  - uuid: 65068
+    name: Google LLC

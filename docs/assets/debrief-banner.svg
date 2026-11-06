@@ -1,0 +1,21 @@
+<svg viewBox="0 0 680 200" width="680" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DEBRIEF: find what's been following you">
+<defs>
+<radialGradient id="gg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#55F5A0" stop-opacity="0.15"/><stop offset="100%" stop-color="#55F5A0" stop-opacity="0"/></radialGradient>
+<radialGradient id="gb" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#4DA6FF" stop-opacity="0.15"/><stop offset="100%" stop-color="#4DA6FF" stop-opacity="0"/></radialGradient>
+</defs>
+<rect x="1" y="1" width="678" height="198" rx="22" fill="#060A08" stroke="#17261D"/>
+<circle cx="98" cy="100" r="78" fill="url(#gg)"/><circle cx="146" cy="100" r="78" fill="url(#gb)"/>
+<g fill="none" stroke="#55F5A0"><circle cx="98" cy="100" r="22" stroke-opacity="0.6"/><circle cx="98" cy="100" r="44" stroke-opacity="0.38"/><circle cx="98" cy="100" r="66" stroke-opacity="0.2"/></g>
+<g fill="none" stroke="#4DA6FF"><circle cx="146" cy="100" r="22" stroke-opacity="0.6"/><circle cx="146" cy="100" r="44" stroke-opacity="0.38"/><circle cx="146" cy="100" r="66" stroke-opacity="0.2"/></g>
+<line x1="98" y1="100" x2="50" y2="64" stroke="#55F5A0" stroke-width="2.2" stroke-linecap="round" stroke-opacity="0.85"/>
+<line x1="146" y1="100" x2="194" y2="136" stroke="#4DA6FF" stroke-width="2.2" stroke-linecap="round" stroke-opacity="0.85"/>
+<rect x="103" y="83" width="38" height="36" fill="#060A08"/>
+<g fill="none" stroke="#E8FFF3" stroke-width="2.6" stroke-linecap="round"><line x1="103" y1="83" x2="103" y2="117"/><line x1="141" y1="83" x2="141" y2="117"/><path d="M103 100 A19 6 0 0 0 141 100"/><path d="M103 117 A19 6 0 0 0 141 117"/></g>
+<ellipse cx="122" cy="83" rx="19" ry="6" fill="#060A08" stroke="#E8FFF3" stroke-width="2.6"/>
+<circle cx="62" cy="74" r="3.6" fill="#55F5A0"/><circle cx="62" cy="74" r="9" fill="none" stroke="#55F5A0" stroke-opacity="0.45"/>
+<circle cx="182" cy="128" r="3.6" fill="#4DA6FF"/><circle cx="182" cy="128" r="9" fill="none" stroke="#4DA6FF" stroke-opacity="0.45"/>
+<text x="250" y="92" font-family="monospace" font-size="58" font-weight="bold" fill="#55F5A0" letter-spacing="7">DEBRIEF</text>
+<text x="252" y="123" font-family="monospace" font-size="13" fill="#9FB5AA" letter-spacing="3">FIND WHAT'S BEEN FOLLOWING YOU</text>
+<line x1="252" y1="137" x2="560" y2="137" stroke="#17261D"/>
+<text x="252" y="159" font-family="monospace" font-size="12" fill="#4DA6FF" letter-spacing="2">SWIVEL + KISMET  →  ONE SQLITE FILE</text>
+</svg>

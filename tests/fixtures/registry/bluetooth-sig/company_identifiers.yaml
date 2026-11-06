@@ -1,0 +1,10 @@
+# TEST FIXTURE: entries copied from data/bluetooth-sig/company_identifiers.yaml (same structure)
+company_identifiers:
+  - value: 0x004C
+    name: 'Apple, Inc.'
+  - value: 0x0075
+    name: 'Samsung Electronics Co. Ltd.'
+  - value: 0x012D
+    name: 'Sony Corporation'
+  - value: 0x01AB
+    name: 'Meta Platforms, Inc.'

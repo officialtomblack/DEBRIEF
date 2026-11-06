@@ -1,0 +1,29 @@
+<svg viewBox="0 0 680 330" width="680" height="330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="How DEBRIEF works: SWIVEL phone logs, Kismet captures and WigleCSV go in; DEBRIEF merges, enriches offline, scores and audits; out come a SQLite database, a devices CSV, a GeoJSON map and an HTML report.">
+<defs><marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M2 1L8 5L2 9" fill="none" stroke="#4A6B5A" stroke-width="1.6" stroke-linecap="round"/></marker></defs>
+<rect x="1" y="1" width="678" height="328" rx="22" fill="#060A08" stroke="#17261D"/>
+<g font-family="monospace">
+<text x="24" y="32" font-size="12" fill="#72847C" letter-spacing="2">HOW IT WORKS</text>
+<g fill="#0B1611" stroke-width="1.2">
+<rect x="24" y="56" width="176" height="52" rx="8" stroke="#F5B84D"/><rect x="24" y="120" width="176" height="52" rx="8" stroke="#4DA6FF"/><rect x="24" y="184" width="176" height="52" rx="8" stroke="#72847C"/>
+</g>
+<g font-size="13" font-weight="bold" fill="#E8FFF3"><text x="38" y="78">SWIVEL phone log</text><text x="38" y="142">Kismet capture</text><text x="38" y="206">WigleCSV</text></g>
+<g font-size="11" fill="#9FB5AA"><text x="38" y="96">.ndjson · Android app</text><text x="38" y="160">.kismet · laptop radio</text><text x="38" y="224">any wardriving export</text></g>
+<rect x="262" y="56" width="156" height="180" rx="10" fill="#0B1611" stroke="#55F5A0" stroke-width="1.6"/>
+<text x="340" y="88" font-size="18" font-weight="bold" fill="#55F5A0" text-anchor="middle" letter-spacing="3">DEBRIEF</text>
+<line x1="282" y1="102" x2="398" y2="102" stroke="#1F3328"/>
+<g font-size="12" fill="#CFE3D8"><text x="282" y="126">1 merge devices</text><text x="282" y="150">2 enrich offline</text><text x="282" y="174">3 score + flag</text><text x="282" y="198">4 audit itself</text></g>
+<text x="282" y="222" font-size="11" fill="#72847C">no guessing, ever</text>
+<g fill="none" stroke="#4A6B5A" stroke-width="1.4" marker-end="url(#a)">
+<path d="M200 82 C232 82 232 120 260 128"/><path d="M200 146 L260 146"/><path d="M200 210 C232 210 232 172 260 164"/>
+<path d="M418 120 C446 112 446 68 478 68"/><path d="M418 136 C448 136 448 122 478 122"/><path d="M418 156 C448 156 448 176 478 176"/><path d="M418 172 C446 180 446 230 478 230"/>
+</g>
+<g fill="#0B1611" stroke="#55F5A0" stroke-width="1.2" stroke-opacity="0.7">
+<rect x="480" y="46" width="176" height="44" rx="8"/><rect x="480" y="100" width="176" height="44" rx="8"/><rect x="480" y="154" width="176" height="44" rx="8"/><rect x="480" y="208" width="176" height="44" rx="8"/>
+</g>
+<g font-size="13" font-weight="bold" fill="#E8FFF3"><text x="494" y="66">SQLite database</text><text x="494" y="120">Devices CSV</text><text x="494" y="174">GeoJSON map</text><text x="494" y="228">HTML report</text></g>
+<g font-size="11" fill="#9FB5AA"><text x="494" y="82">query anything</text><text x="494" y="136">open in a spreadsheet</text><text x="494" y="190">places, on a map</text><text x="494" y="244">ranked, no coordinates</text></g>
+<line x1="24" y1="268" x2="656" y2="268" stroke="#17261D"/>
+<text x="24" y="290" font-size="11" fill="#9FB5AA">offline reference data, fetched once: IEEE · Bluetooth SIG · Wireshark · OSM ALPR cameras</text>
+<text x="24" y="310" font-size="11" fill="#4DA6FF">opt-in online lookups: WiGLE · beaconDB (Wi-Fi access points only, never your GPS)</text>
+</g>
+</svg>

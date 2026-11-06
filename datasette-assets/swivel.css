@@ -1,0 +1,52 @@
+/* SWIVEL cyberpunk theme for Datasette — matches the static swivel-snapshot report.
+   Palette: neon green #4ade80 / mint #8ffbc0 on near-black #0b0f0d, mono font. */
+:root { color-scheme: dark; }
+
+html, body {
+  background: #0b0f0d !important;
+  color: #cfe3d8 !important;
+  font-family: ui-monospace, Menlo, Consolas, monospace !important;
+}
+
+a, a:link, a:visited { color: #4ade80 !important; }
+a:hover { color: #8ffbc0 !important; }
+
+h1, h2, h3, .page-header h1 { color: #4ade80 !important; }
+.hd, header, .ft, footer { background: #0b0f0d !important; color: #7a8c82 !important; border-color: #1a241f !important; }
+.hd a, header a, .ft a, footer a { color: #4ade80 !important; }
+.crumbs, .breadcrumbs, .page-header { color: #7a8c82 !important; }
+
+/* search box, filters, SQL editor, buttons */
+input, textarea, select {
+  background: #121a16 !important;
+  color: #cfe3d8 !important;
+  border: 1px solid #224433 !important;
+  border-radius: 6px !important;
+  font-family: ui-monospace, Menlo, Consolas, monospace !important;
+}
+button, .button, input[type=submit] {
+  background: #121a16 !important; color: #4ade80 !important;
+  border: 1px solid #224433 !important; border-radius: 6px !important; cursor: pointer;
+}
+
+/* the main data table */
+table.rows-and-columns { border-collapse: collapse !important; width: 100%; }
+table.rows-and-columns th {
+  background: #0f1713 !important; color: #8ffbc0 !important;
+  border-bottom: 1px solid #1a241f !important;
+}
+table.rows-and-columns th a { color: #8ffbc0 !important; }
+table.rows-and-columns td {
+  background: #0b0f0d !important; color: #cfe3d8 !important;
+  border-bottom: 1px solid #1a241f !important; white-space: nowrap;
+}
+table.rows-and-columns tbody tr:hover td { background: #121a16 !important; }
+
+/* code / query output / the CodeMirror SQL box */
+pre, code, .CodeMirror { background: #0e1512 !important; color: #b9ccc2 !important; }
+.CodeMirror-gutters { background: #0b0f0d !important; border-color: #1a241f !important; }
+
+/* facets, suggestions, metadata blurb */
+.facet-results, .suggested-facets, .message-info, .metadata-description, .ft {
+  background: #0e1512 !important; color: #b9ccc2 !important; border-color: #1a241f !important;
+}

@@ -1,0 +1,18 @@
+TEST FIXTURE - small vendor table in IEEE oui.txt format, used only by tests/test_r3.py.
+The first ten entries are copied verbatim from the IEEE MA-L registry (/usr/share/ieee-data/oui.txt, 2022-08 build).
+The last two are TEST-ONLY prefixes with the locally-administered bit (0x02) set. Real IEEE MA-L entries never have
+that bit set, so a tool that leans on "the table won't match an LAA address" instead of checking the bit would pass
+a test without them. They simulate a CID entry or a bad table.
+
+A4-83-E7   (hex)		Apple, Inc.
+00-00-0C   (hex)		Cisco Systems, Inc
+00-02-5B   (hex)		Cambridge Silicon Radio
+F8-04-2E   (hex)		SAMSUNG ELECTRO-MECHANICS(THAILAND)
+5C-F9-38   (hex)		Apple, Inc.
+28-CF-E9   (hex)		Apple, Inc.
+98-01-A7   (hex)		Apple, Inc.
+AC-BC-32   (hex)		Apple, Inc.
+D0-03-4B   (hex)		Apple, Inc.
+3C-5A-B4   (hex)		Google, Inc.
+DA-A1-19   (hex)		TEST-ONLY LAA PREFIX A
+1A-2B-3C   (hex)		TEST-ONLY LAA PREFIX B

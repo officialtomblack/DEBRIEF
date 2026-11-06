@@ -1,0 +1,104 @@
+{
+  "_about": "Coarse BLE advertisement signatures for device_class / is_tracker. Presence-based only: a signature matches when the named company ID, Apple Continuity TLV type, or 16-bit service UUID is PRESENT in a device's adverts. Nothing inside an advert is decoded beyond listing which TLV types and service UUIDs appear. No owner identification (spec R8). Extend by adding entries; no code change needed.",
+  "_match_keys": {
+    "company_id": "manufacturer-data company ID (first 2 bytes, little-endian), e.g. '0x004C'",
+    "apple_type": "an Apple Continuity TLV type byte present inside 0x004C manufacturer data (TLVs are type/length/value)",
+    "service_uuid16": "a 16-bit service UUID present either in the advertised service UUIDs or as a service-data key"
+  },
+  "_confidence": "high = the match is tracker-specific and confirmed by a primary source; med = the UUID/type is registered to a company that makes only trackers, or is named a tracker by the project spec; low = the UUID is registered company-wide and may also appear on non-tracker products.",
+  "_deferred": {
+    "google_find_my_network": "The build spec seeds Google Find My Network as a tracker family, but it is NOT implemented here, on purpose. A correct coarse match needs the specific service UUID the Find My Device Network advertises, and that is not established by any source on this machine. The Google-owned 16-bit UUIDs actually seen in the captures (0xFEF3, and generally 0xFEAA Eddystone / 0xFE2C Fast Pair per data/bluetooth-sig/member_uuids.yaml) are NOT the Find My Device Network identifier: flagging them as a tracker would mark every Google Fast Pair / Eddystone device as a tracker (the same company-wide false-positive avoided for Samsung 0x0075). Add an entry only once the FMDN UUID is confirmed against a cited primary source. Raised with the maintainer at the stage-2 gate."
+  },
+  "signatures": [
+    {
+      "id": "apple_find_my",
+      "match": {"company_id": "0x004C", "apple_type": "0x12"},
+      "device_class": "location_tracker",
+      "is_tracker": true,
+      "tracker_type": "apple_find_my",
+      "confidence": "med",
+      "citations": [
+        {"title": "SWIVEL build spec v1, enrichment sources (tracker seed list)", "url": "Working/2026-10-30_log-enhancer_BUILD-SPEC_v1.md", "where": "OFFLINE ENRICHMENT SOURCES: 'Apple Find My/AirTag (mfr 0x004C, type 0x12)'"}
+      ],
+      "notes": "Apple Continuity TLV type 0x12 is the offline-finding (Find My) message. It is broadcast by ANY Apple device participating in Find My (iPhone, AirPods, AirTag, third-party Find My accessories), so this flags 'a Find My advert is present', NOT specifically an AirTag. Nothing in the TLV value is decoded, so separated-from-owner vs near-owner state is not distinguished. Find My addresses rotate, so the same physical tracker appears under many addresses over time."
+    },
+    {
+      "id": "tile_tracker",
+      "match": {"service_uuid16": "0xFEED"},
+      "device_class": "location_tracker",
+      "is_tracker": true,
+      "tracker_type": "tile",
+      "confidence": "med",
+      "citations": [
+        {"title": "Bluetooth SIG Assigned Numbers, member service UUIDs", "url": "https://bitbucket.org/bluetooth-SIG/public/src/main/assigned_numbers/uuids/member_uuids.yaml", "where": "uuid 0xFEED -> 'Tile, Inc.' (local copy: data/bluetooth-sig/member_uuids.yaml)"},
+        {"title": "SWIVEL build spec v1, tracker seed list", "url": "Working/2026-10-30_log-enhancer_BUILD-SPEC_v1.md", "where": "'Tile (service UUID 0xFEED/0xFEEC)'"}
+      ],
+      "notes": "0xFEED and 0xFEEC are registered to Tile, Inc., which makes only location trackers. Matched on 0xFEED OR 0xFEEC (see tile_tracker_feec). Which Tile product, and its state, are not decoded."
+    },
+    {
+      "id": "tile_tracker_feec",
+      "match": {"service_uuid16": "0xFEEC"},
+      "device_class": "location_tracker",
+      "is_tracker": true,
+      "tracker_type": "tile",
+      "confidence": "med",
+      "citations": [
+        {"title": "Bluetooth SIG Assigned Numbers, member service UUIDs", "url": "https://bitbucket.org/bluetooth-SIG/public/src/main/assigned_numbers/uuids/member_uuids.yaml", "where": "uuid 0xFEEC -> 'Tile, Inc.' (local copy: data/bluetooth-sig/member_uuids.yaml)"},
+        {"title": "SWIVEL build spec v1, tracker seed list", "url": "Working/2026-10-30_log-enhancer_BUILD-SPEC_v1.md", "where": "'Tile (service UUID 0xFEED/0xFEEC)'"}
+      ],
+      "notes": "Second Tile UUID; see tile_tracker."
+    },
+    {
+      "id": "chipolo_tracker",
+      "match": {"service_uuid16": "0xFE33"},
+      "device_class": "location_tracker",
+      "is_tracker": true,
+      "tracker_type": "chipolo",
+      "confidence": "med",
+      "citations": [
+        {"title": "Bluetooth SIG Assigned Numbers, member service UUIDs", "url": "https://bitbucket.org/bluetooth-SIG/public/src/main/assigned_numbers/uuids/member_uuids.yaml", "where": "uuid 0xFE33 and 0xFE65 -> 'CHIPOLO d.o.o.' (local copy: data/bluetooth-sig/member_uuids.yaml)"},
+        {"title": "SWIVEL build spec v1, tracker seed list", "url": "Working/2026-10-30_log-enhancer_BUILD-SPEC_v1.md", "where": "'Chipolo'"}
+      ],
+      "notes": "0xFE33/0xFE65 are registered to CHIPOLO d.o.o., which makes only location trackers. Matched on either (see chipolo_tracker_fe65). Chipolo also sells Find My accessories, which advertise as Apple Find My (apple_find_my) instead."
+    },
+    {
+      "id": "chipolo_tracker_fe65",
+      "match": {"service_uuid16": "0xFE65"},
+      "device_class": "location_tracker",
+      "is_tracker": true,
+      "tracker_type": "chipolo",
+      "confidence": "med",
+      "citations": [
+        {"title": "Bluetooth SIG Assigned Numbers, member service UUIDs", "url": "https://bitbucket.org/bluetooth-SIG/public/src/main/assigned_numbers/uuids/member_uuids.yaml", "where": "uuid 0xFE65 -> 'CHIPOLO d.o.o.' (local copy: data/bluetooth-sig/member_uuids.yaml)"},
+        {"title": "SWIVEL build spec v1, tracker seed list", "url": "Working/2026-10-30_log-enhancer_BUILD-SPEC_v1.md", "where": "'Chipolo'"}
+      ],
+      "notes": "Second Chipolo UUID; see chipolo_tracker."
+    },
+    {
+      "id": "samsung_smarttag",
+      "match": {"service_uuid16": "0xFD5A"},
+      "device_class": "location_tracker",
+      "is_tracker": true,
+      "tracker_type": "samsung_smarttag",
+      "confidence": "low",
+      "citations": [
+        {"title": "Bluetooth SIG Assigned Numbers, member service UUIDs", "url": "https://bitbucket.org/bluetooth-SIG/public/src/main/assigned_numbers/uuids/member_uuids.yaml", "where": "uuid 0xFD5A, 0xFD59, 0xFD69 -> 'Samsung Electronics' (local copy: data/bluetooth-sig/member_uuids.yaml)"},
+        {"title": "SWIVEL build spec v1, tracker seed list", "url": "Working/2026-10-30_log-enhancer_BUILD-SPEC_v1.md", "where": "'Samsung SmartTag (mfr 0x0075, service 0xFD5A/0xFD59)'"}
+      ],
+      "notes": "LOW confidence on purpose: 0xFD5A/0xFD59 are registered to Samsung Electronics, not confirmed here to be SmartTag-only, so this may also match other Samsung SmartThings devices. The spec seeds it as SmartTag. Company ID 0x0075 (all Samsung) is deliberately NOT a tracker signature on its own, as it matches every Samsung phone and TV. Matched on 0xFD5A OR 0xFD59 (see samsung_smarttag_fd59)."
+    },
+    {
+      "id": "samsung_smarttag_fd59",
+      "match": {"service_uuid16": "0xFD59"},
+      "device_class": "location_tracker",
+      "is_tracker": true,
+      "tracker_type": "samsung_smarttag",
+      "confidence": "low",
+      "citations": [
+        {"title": "Bluetooth SIG Assigned Numbers, member service UUIDs", "url": "https://bitbucket.org/bluetooth-SIG/public/src/main/assigned_numbers/uuids/member_uuids.yaml", "where": "uuid 0xFD59 -> 'Samsung Electronics' (local copy: data/bluetooth-sig/member_uuids.yaml)"},
+        {"title": "SWIVEL build spec v1, tracker seed list", "url": "Working/2026-10-30_log-enhancer_BUILD-SPEC_v1.md", "where": "'Samsung SmartTag (mfr 0x0075, service 0xFD5A/0xFD59)'"}
+      ],
+      "notes": "Second Samsung UUID; see samsung_smarttag."
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+<svg viewBox="0 0 256 256" width="256" height="256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DEBRIEF icon">
+<defs>
+<radialGradient id="gg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#55F5A0" stop-opacity="0.16"/><stop offset="100%" stop-color="#55F5A0" stop-opacity="0"/></radialGradient>
+<radialGradient id="gb" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#4DA6FF" stop-opacity="0.16"/><stop offset="100%" stop-color="#4DA6FF" stop-opacity="0"/></radialGradient>
+</defs>
+<rect x="0" y="0" width="256" height="256" rx="56" fill="#04120C"/>
+<rect x="1" y="1" width="254" height="254" rx="55" fill="none" stroke="#17261D"/>
+<circle cx="98" cy="128" r="86" fill="url(#gg)"/>
+<circle cx="158" cy="128" r="86" fill="url(#gb)"/>
+<g fill="none" stroke="#55F5A0"><circle cx="98" cy="128" r="28" stroke-opacity="0.6"/><circle cx="98" cy="128" r="54" stroke-opacity="0.38"/><circle cx="98" cy="128" r="80" stroke-opacity="0.2"/></g>
+<g fill="none" stroke="#4DA6FF"><circle cx="158" cy="128" r="28" stroke-opacity="0.6"/><circle cx="158" cy="128" r="54" stroke-opacity="0.38"/><circle cx="158" cy="128" r="80" stroke-opacity="0.2"/></g>
+<line x1="98" y1="128" x2="40" y2="84" stroke="#55F5A0" stroke-width="3" stroke-linecap="round" stroke-opacity="0.85"/>
+<line x1="158" y1="128" x2="216" y2="172" stroke="#4DA6FF" stroke-width="3" stroke-linecap="round" stroke-opacity="0.85"/>
+<rect x="104" y="106" width="48" height="46" fill="#04120C"/>
+<g fill="none" stroke="#E8FFF3" stroke-width="3.5" stroke-linecap="round"><line x1="104" y1="106" x2="104" y2="150"/><line x1="152" y1="106" x2="152" y2="150"/><path d="M104 128 A24 8 0 0 0 152 128"/><path d="M104 150 A24 8 0 0 0 152 150"/></g>
+<ellipse cx="128" cy="106" rx="24" ry="8" fill="#04120C" stroke="#E8FFF3" stroke-width="3.5"/>
+<circle cx="56" cy="96" r="5" fill="#55F5A0"/><circle cx="56" cy="96" r="13" fill="none" stroke="#55F5A0" stroke-opacity="0.45"/>
+<circle cx="202" cy="162" r="5" fill="#4DA6FF"/><circle cx="202" cy="162" r="13" fill="none" stroke="#4DA6FF" stroke-opacity="0.45"/>
+</svg>

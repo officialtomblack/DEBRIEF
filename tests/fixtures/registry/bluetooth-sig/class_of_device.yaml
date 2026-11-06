@@ -1,0 +1,16 @@
+# Synthetic Class-of-Device fixture (a faithful subset of the SIG core list). Majors 0 and 31 carry no device
+# class and must be skipped by the decoder; the rest fill device_class for BT-Classic.
+cod_services:
+ - bit: 21
+   name: "Audio (Speaker, Microphone, Headset service, ...)"
+cod_device_class:
+ - major: 0
+   name: Miscellaneous
+ - major: 1
+   name: "Computer (desktop, notebook, PDA, organizer, ...)"
+ - major: 2
+   name: "Phone (cellular, cordless, pay phone, modem, ...)"
+ - major: 4
+   name: "Audio/Video (headset, speaker, stereo, video display, VCR, ...)"
+ - major: 31
+   name: "Uncategorized (device code not specified)\n"
