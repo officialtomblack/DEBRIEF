@@ -90,7 +90,8 @@ The tracker floats to the top, flagged **followed** at **3 places** — and the 
 python3 swivel_enhance.py run session.ndjson capture.kismet --kismet-window 60
 #   -> out/swivel.db, out/swivel_devices.csv, out/swivel_clusters.geojson, out/swivel_summary.txt
 python3 swivel_enhance.py report out/swivel.db     # ranked HTML report, no coordinates in it
-datasette out/swivel.db -m datasette_metadata.json # optional: browse + map in your browser
+datasette out/swivel.db -m datasette_metadata.json --static assets:datasette-assets \
+  --setting facet_time_limit_ms 3000 --setting sql_time_limit_ms 5000   # optional: browse + map in your browser
 ```
 
 **`run` accumulates.** Every run adds the new captures to the same database (files already ingested are skipped by content hash) and re-scores everything — so after each outing you just run it again and the picture of *what keeps showing up* gets sharper. `--fresh` starts over.

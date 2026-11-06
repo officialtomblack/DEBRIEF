@@ -43,7 +43,8 @@ phone is covered in the [main README](../README.md#-use-it-on-your-own-captures)
 python3 swivel_enhance.py fetch                 # once: download the reference registries into data/ (writes SOURCES.md)
 python3 swivel_enhance.py run logs/<phone>.ndjson <capture>.kismet --kismet-window 60
 #   -> out/swivel.db, out/swivel_devices.csv, out/swivel_clusters.geojson, out/swivel_summary.txt
-datasette out/swivel.db -m datasette_metadata.json      # browse at http://localhost:8001
+datasette out/swivel.db -m datasette_metadata.json --static assets:datasette-assets \
+  --setting facet_time_limit_ms 3000 --setting sql_time_limit_ms 5000   # browse at http://localhost:8001
 python3 swivel_enhance.py report out/swivel.db                       # -> out/swivel_report.html: devices ranked by info_score, valuable columns, no coordinates
 ```
 
