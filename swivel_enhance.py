@@ -1937,8 +1937,8 @@ def format_summary(s):
 
 # ---- static high-value-device report (offline HTML; ranked by info_score, valuable columns, no coordinates) ----
 # The main table's columns, in order: (field_or_computed, header). Computed ones are built in build_report_html.
-REPORT_MAIN = [("info_score", "★"), ("radio", "radio"), ("address", "address"), ("oui_vendor", "vendor"),
-               ("oui_device_type", "type"), ("device_name", "name"), ("device_class", "class"), ("observed_ip", "IP"),
+REPORT_MAIN = [("info_score", "★"), ("radio", "radio"), ("address", "address"), ("observed_ip", "IP"),
+               ("oui_vendor", "vendor"), ("oui_device_type", "type"), ("device_name", "name"), ("device_class", "class"),
                ("@tracker", "tracker"), ("@signals", "signals"), ("@located", "located"),
                ("sighting_count", "sight"), ("sessions_seen", "sess"), ("rssi_median", "rssi"), ("last_seen", "last seen")]
 # Why each column group is worth having — shown in the report's legend (answers "why is this column needed").
@@ -2030,7 +2030,7 @@ def build_report_html(rows, dbname, generated):
             det.append(f'<div><span class="k">{esc(c)}</span> {esc(str(v))}{prov}</div>')
         detail = "".join(det) or "<div class='prov'>no enriched fields</div>"
         body.append(
-            f'<tr class="dev" data-score="{score}" onclick="t({i})">' + "".join(tds) + "</tr>"
+            f'<tr class="dev" data-score="{score}" data-ip="{1 if row["observed_ip"] else 0}" onclick="t({i})">' + "".join(tds) + "</tr>"
             f'<tr id="d{i}" class="detail" hidden><td colspan="{len(REPORT_MAIN)}"><div class="grid">{detail}</div></td></tr>')
     head = "".join(f'<th onclick="sortBy({j})">{esc(h)}</th>' for j, (_, h) in enumerate(REPORT_MAIN))
     legend = "".join(f"<dt>{esc(g)}</dt><dd>{why}</dd>" for g, why in REPORT_WHY)
@@ -2039,6 +2039,7 @@ def build_report_html(rows, dbname, generated):
               f'{esc(generated)} · ranked by info_score · <b>no coordinates in this file</b></p>'
             + '<div class="bar"><input id="q" placeholder="search…" oninput="flt()">'
               '<label>min ★ <input id="ms" type="number" value="0" min="0" style="width:4em" oninput="flt()"></label>'
+              '<label><input id="iponly" type="checkbox" onchange="flt()"> has IP</label>'
               '<span id="n"></span></div>'
             + '<details class="legend"><summary>what the columns mean / why they matter</summary><dl>' + legend
             + '<dt>honesty</dt><dd>every enriched value carries its own <i>source</i> and <i>confidence</i> (shown in the '
@@ -2065,8 +2066,8 @@ REPORT_HEAD = ("<!doctype html><html lang=en><head><meta charset=utf-8>"
                "</style></head><body>")
 REPORT_TAIL = ("<script>"
                "function t(i){var d=document.getElementById('d'+i);if(d)d.hidden=!d.hidden}"
-               "function flt(){var q=document.getElementById('q').value.toLowerCase(),ms=+document.getElementById('ms').value||0,n=0;"
-               "document.querySelectorAll('tr.dev').forEach(function(r){var ok=(+r.dataset.score>=ms)&&r.textContent.toLowerCase().indexOf(q)>-1;"
+               "function flt(){var q=document.getElementById('q').value.toLowerCase(),ms=+document.getElementById('ms').value||0,ip=document.getElementById('iponly').checked,n=0;"
+               "document.querySelectorAll('tr.dev').forEach(function(r){var ok=(+r.dataset.score>=ms)&&(!ip||r.dataset.ip=='1')&&r.textContent.toLowerCase().indexOf(q)>-1;"
                "r.hidden=!ok;var d=document.getElementById('d'+[].indexOf.call(r.parentNode.children,r));"
                "if(ok)n++});document.getElementById('n').textContent=n+' shown'}"
                "function sortBy(j){var tb=document.querySelector('#t tbody'),rs=[].slice.call(tb.querySelectorAll('tr.dev'));"
